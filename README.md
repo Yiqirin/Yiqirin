@@ -19,4 +19,4 @@ I'm a **Computer Engineering Student** and an aspiring **Game Developer**. I lov
 I run a review website where I analyze the latest in entertainment.
 [<img src="https://img.shields.io/badge/LoreSeekers.com-ff4b4b?style=for-the-badge&logo=&logoColor=white">](https://www.loreseekers.com)
 
-[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/YOUR-PROFILE-LINK)
+[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/yigityazgan)
