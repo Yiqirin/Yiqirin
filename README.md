@@ -1,7 +1,7 @@
 <img src="./assets/banner.png" width="100%" alt="Yiğit Yazgan — Computer & Software Engineer, Product Builder, AI"/>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&pause=1200&color=C9A84C&center=true&vCenter=true&width=640&lines=Computer+%26+Software+Engineer;Stokta%3A+prototype+to+App+Store+in+9+days;FitPrep%3A+30+screens%2C+~34k+lines+of+TypeScript;Ca-Ching%3A+30%2B+unit+tests%2C+zero+dependencies;Building+with+AI%3A+Claude+Code+%2B+Higgsfield" alt="Typing intro"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&pause=1200&color=C9A84C&center=true&vCenter=true&width=820&lines=Computer+%26+Software+Engineer;Stokta%3A+prototype+to+App+Store+in+9+days;FitPrep%3A+30+screens%2C+~34k+lines+of+TypeScript;Ca-Ching%3A+30%2B+unit+tests%2C+zero+dependencies" alt="Typing intro"/>
 </p>
 
 ## 🧭 About Me
@@ -256,12 +256,13 @@ Discovery and booking platform for Northern Cyprus: salons, barbers, clinics and
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=Yiqirin&bg_color=160A0D&color=C9A84C&title_color=C9A84C&line=C9A84C&point=F0E6D2&area=true&area_color=7C2D3A&hide_border=true&radius=12&custom_title=Contribution%20Graph" width="100%" alt="Contribution graph"/>
 </p>
 
+<!-- Trophy servisi (github-profile-trophy.vercel.app) şu an yanıt vermiyor. Çalışınca bu yorumu kaldır.
 ## 🏆 GitHub Trophies
 
 <p align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=Yiqirin&theme=gruvbox&no-frame=true&no-bg=true&margin-w=8&row=1&column=7" alt="GitHub trophies"/>
 </p>
-
+-->
 
 ## ✍️ Random Dev Quote
 
