@@ -80,7 +80,7 @@ query($login: String!, $privacy: RepositoryPrivacy) {
     followers { totalCount }
     pullRequests { totalCount }
     repositoriesContributedTo(contributionTypes: [COMMIT, PULL_REQUEST, ISSUE, REPOSITORY]) { totalCount }
-    contributionsCollection { totalCommitContributions restrictedContributionsCount }
+    contributionsCollection { totalCommitContributions restrictedContributionsCount contributionYears }
     allRepos: repositories(ownerAffiliations: OWNER, privacy: $privacy) { totalCount }
     repositories(first: 100, ownerAffiliations: OWNER, isFork: false, privacy: $privacy) {
       nodes {
@@ -93,6 +93,41 @@ query($login: String!, $privacy: RepositoryPrivacy) {
   }
 }
 """
+
+
+CAL_QUERY = """
+query($login: String!, $from: DateTime!, $to: DateTime!) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      contributionCalendar { weeks { contributionDays { date contributionCount } } }
+    }
+  }
+}
+"""
+
+
+def gql(query, variables, token):
+    req = urllib.request.Request(
+        "https://api.github.com/graphql",
+        data=json.dumps({"query": query, "variables": variables}).encode(),
+        headers={"Authorization": f"bearer {token}", "Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
+
+
+def fetch_calendar(login, token, years):
+    """Tüm yılların günlük katkı sayıları: {'2026-11-23': 4, ...} (gizli katkılar dahil)."""
+    days = {}
+    today = dt.date.today().isoformat()
+    for y in sorted(years):
+        res = gql(CAL_QUERY, {"login": login, "from": f"{y}-01-01T00:00:00Z", "to": f"{y}-12-31T23:59:59Z"}, token)
+        weeks = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+        for w in weeks:
+            for d in w["contributionDays"]:
+                if d["date"] <= today:
+                    days[d["date"]] = d["contributionCount"]
+    return days
 
 
 def fetch(login, token):
@@ -125,6 +160,7 @@ def fetch(login, token):
         "prs": u["pullRequests"]["totalCount"],
         "followers": u["followers"]["totalCount"],
         "languages": langs,
+        "calendar": fetch_calendar(login, token, cc.get("contributionYears") or [dt.date.today().year]),
     }
 
 
@@ -136,6 +172,10 @@ DEMO = {
         "HTML": {"size": 70000, "color": "#e34c26"}, "CSS": {"size": 30000, "color": "#663399"},
     },
 }
+import random as _r
+_r.seed(7)
+DEMO["calendar"] = {(dt.date.today() - dt.timedelta(days=i)).isoformat(): (_r.choice([0, 0, 1, 2, 3, 5, 8]) if i > 6 else _r.randint(1, 6)) for i in range(400)}
+
 
 
 def uptime(bday):
@@ -317,6 +357,105 @@ def radar(stats):
     return "\n".join(out)
 
 
+def streak_stats(cal):
+    dates = sorted(cal)
+    total = sum(cal.values())
+    first = next((d for d in dates if cal[d] > 0), dates[0] if dates else dt.date.today().isoformat())
+    # en uzun seri
+    best = cur = 0; best_end = best_start = None; run_start = None
+    for d in dates:
+        if cal[d] > 0:
+            if cur == 0:
+                run_start = d
+            cur += 1
+            if cur > best:
+                best, best_start, best_end = cur, run_start, d
+        else:
+            cur = 0
+    # güncel seri (bugün henüz katkı yoksa dünden geriye sayılır)
+    today = dt.date.today()
+    day = today if cal.get(today.isoformat(), 0) > 0 else today - dt.timedelta(days=1)
+    cur_len, cur_end = 0, day
+    while cal.get(day.isoformat(), 0) > 0:
+        cur_len += 1
+        day -= dt.timedelta(days=1)
+    cur_start = day + dt.timedelta(days=1)
+    return {"total": total, "first": first, "current": cur_len, "cur_start": cur_start.isoformat(),
+            "cur_end": cur_end.isoformat(), "longest": best, "best_start": best_start, "best_end": best_end}
+
+
+def fmt_date(iso, year=True):
+    if not iso:
+        return "-"
+    d = dt.date.fromisoformat(iso)
+    return d.strftime("%b %-d, %Y") if year else d.strftime("%b %-d")
+
+
+def streak_card(stats):
+    p = C["dark"]
+    st = streak_stats(stats["calendar"])
+    W, H = 920, 220
+    col = W / 3
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="{SANS}">',
+           f'<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="14" fill="{p["bg"]}" stroke="{p["border"]}" stroke-width="1.5"/>']
+    for i in (1, 2):
+        out.append(f'<line x1="{col*i:.1f}" y1="34" x2="{col*i:.1f}" y2="{H-34}" stroke="{p["border"]}"/>')
+    def same_year(a, b):
+        return a and b and a[:4] == b[:4] == str(dt.date.today().year)
+    cur_range = (f'{fmt_date(st["cur_start"], False)} - {fmt_date(st["cur_end"], False)}' if st["current"] > 1
+                 else fmt_date(st["cur_end"], False) if st["current"] == 1 else "No active streak")
+    best_range = (f'{fmt_date(st["best_start"], not same_year(st["best_start"], st["best_end"]))} - '
+                  f'{fmt_date(st["best_end"], not same_year(st["best_start"], st["best_end"]))}') if st["longest"] > 1 else fmt_date(st["best_end"])
+    cols = [(st["total"], "Total Contributions", f'{fmt_date(st["first"])} - Present'),
+            (st["current"], "Current Streak", cur_range),
+            (st["longest"], "Longest Streak", best_range)]
+    for i, (num, label, sub) in enumerate(cols):
+        cx = col * i + col / 2
+        if i == 1:
+            out.append(f'<circle cx="{cx:.1f}" cy="82" r="44" fill="none" stroke="{p["key"]}" stroke-width="5"/>')
+            out.append(f'<path d="M{cx:.1f} 26 c-9 10 -12 16 -5 23 c3 3 10 3 12 -3 c3 -7 -2 -12 -7 -20 z" fill="{p["key"]}"/>')
+            out.append(f'<text x="{cx:.1f}" y="96" fill="{p["val"]}" font-size="38" font-weight="700" text-anchor="middle">{num}</text>')
+            out.append(f'<text x="{cx:.1f}" y="160" fill="{p["key"]}" font-size="18" font-weight="700" text-anchor="middle">{label}</text>')
+            out.append(f'<text x="{cx:.1f}" y="188" fill="{p["muted"]}" font-size="14" text-anchor="middle">{esc(sub)}</text>')
+        else:
+            out.append(f'<text x="{cx:.1f}" y="96" fill="{p["val"]}" font-size="40" font-weight="700" text-anchor="middle">{num}</text>')
+            out.append(f'<text x="{cx:.1f}" y="140" fill="{p["key"]}" font-size="18" text-anchor="middle">{label}</text>')
+            out.append(f'<text x="{cx:.1f}" y="168" fill="{p["muted"]}" font-size="14" text-anchor="middle">{esc(sub)}</text>')
+    out.append("</svg>")
+    return "\n".join(out)
+
+
+def activity_card(stats, days=31):
+    p = C["dark"]
+    today = dt.date.today()
+    series = [(today - dt.timedelta(days=days - 1 - i)) for i in range(days)]
+    vals = [stats["calendar"].get(d.isoformat(), 0) for d in series]
+    W, H = 920, 320
+    L, R, T, B = 56, 24, 56, 56
+    pw, ph = W - L - R, H - T - B
+    mx = max(max(vals), 1)
+    step = max(1, math.ceil(mx / 4))
+    top = step * 4
+    X = lambda i: L + pw * i / (days - 1)
+    Y = lambda v: T + ph * (1 - v / top)
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="{SANS}">',
+           f'<rect width="{W}" height="{H}" rx="14" fill="{p["bg"]}"/>',
+           f'<text x="{W/2}" y="34" fill="{p["key"]}" font-size="17" font-weight="700" text-anchor="middle">Contributions · last {days} days · {sum(vals)} total</text>']
+    for k in range(5):
+        v = step * k
+        out.append(f'<line x1="{L}" y1="{Y(v):.1f}" x2="{W-R}" y2="{Y(v):.1f}" stroke="{p["grid"]}" stroke-dasharray="3 4"/>')
+        out.append(f'<text x="{L-10}" y="{Y(v)+4:.1f}" fill="{p["muted"]}" font-size="12" text-anchor="end">{v}</text>')
+    pts = [(X(i), Y(v)) for i, v in enumerate(vals)]
+    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    out.append(f'<polygon points="{L},{Y(0):.1f} {line} {W-R},{Y(0):.1f}" fill="{p["border"]}" fill-opacity=".55"/>')
+    out.append(f'<polyline points="{line}" fill="none" stroke="{p["key"]}" stroke-width="2.5" stroke-linejoin="round"/>')
+    for (x, y), d in zip(pts, series):
+        out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{p["val"]}"/>')
+        out.append(f'<text x="{x:.1f}" y="{H-B+20}" fill="{p["muted"]}" font-size="11" text-anchor="middle">{d.day}</text>')
+    out.append("</svg>")
+    return "\n".join(out)
+
+
 def main():
     if "--demo" in sys.argv:
         stats = DEMO
@@ -330,7 +469,9 @@ def main():
     (ASSETS / "neofetch-dark.svg").write_text(neofetch(stats, ascii_rows, "dark"), encoding="utf-8")
     (ASSETS / "neofetch-light.svg").write_text(neofetch(stats, ascii_rows, "light"), encoding="utf-8")
     (ASSETS / "radar.svg").write_text(radar(stats), encoding="utf-8")
-    print("OK:", {k: v for k, v in stats.items() if k != "languages"}, list(stats["languages"])[:5])
+    (ASSETS / "streak.svg").write_text(streak_card(stats), encoding="utf-8")
+    (ASSETS / "activity.svg").write_text(activity_card(stats), encoding="utf-8")
+    print("OK:", {k: v for k, v in stats.items() if k not in ("languages", "calendar")}, streak_stats(stats["calendar"]), list(stats["languages"])[:5])
 
 
 if __name__ == "__main__":

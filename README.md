@@ -247,13 +247,13 @@ Discovery and booking platform for Northern Cyprus: salons, barbers, clinics and
   <img src="./assets/radar.svg" width="100%" alt="Language radar, top languages and GitHub stats"/>
 </p>
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=Yiqirin&background=160A0D&border=7C2D3A&stroke=7C2D3A&ring=C9A84C&fire=C9A84C&currStreakNum=F0E6D2&sideNums=F0E6D2&currStreakLabel=C9A84C&sideLabels=C9A84C&dates=B8A99A&border_radius=12" width="100%" alt="GitHub streak"/>
+  <img src="./assets/streak.svg" width="100%" alt="Contribution streak"/>
 </p>
 
 ## 📈 Contribution Graph
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Yiqirin&bg_color=160A0D&color=C9A84C&title_color=C9A84C&line=C9A84C&point=F0E6D2&area=true&area_color=7C2D3A&hide_border=true&radius=12&custom_title=Contribution%20Graph" width="100%" alt="Contribution graph"/>
+  <img src="./assets/activity.svg" width="100%" alt="Contributions in the last 31 days"/>
 </p>
 
 <!-- Trophy servisi (github-profile-trophy.vercel.app) şu an yanıt vermiyor. Çalışınca bu yorumu kaldır.
