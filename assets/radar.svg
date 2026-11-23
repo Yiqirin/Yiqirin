@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="470" viewBox="0 0 920 470" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<rect x="16" y="16" width="436.0" height="300" rx="12" fill="#160A0D" stroke="#7C2D3A" stroke-width="1.5"/>
+<text x="38" y="52" fill="#C9A84C" font-size="18" font-weight="600">Language Radar</text>
+<polygon points="234.0,159.5 252.6,191.8 215.4,191.8" fill="none" stroke="#3A2328" stroke-width="1"/>
+<polygon points="234.0,138.0 271.2,202.5 196.8,202.5" fill="none" stroke="#3A2328" stroke-width="1"/>
+<polygon points="234.0,116.5 289.9,213.2 178.1,213.3" fill="none" stroke="#3A2328" stroke-width="1"/>
+<polygon points="234.0,95.0 308.5,224.0 159.5,224.0" fill="none" stroke="#3A2328" stroke-width="1"/>
+<line x1="234.0" y1="181" x2="234.0" y2="95.0" stroke="#3A2328"/>
+<line x1="234.0" y1="181" x2="308.5" y2="224.0" stroke="#3A2328"/>
+<line x1="234.0" y1="181" x2="159.5" y2="224.0" stroke="#3A2328"/>
+<polygon points="234.0,175.8 238.5,183.6 229.5,183.6" fill="#C9A84C" fill-opacity=".22" stroke="#C9A84C" stroke-width="2"/>
+<circle cx="234.0" cy="175.8" r="4" fill="#C9A84C"/>
+<circle cx="238.5" cy="183.6" r="4" fill="#C9A84C"/>
+<circle cx="229.5" cy="183.6" r="4" fill="#C9A84C"/>
+<text x="38" y="298" fill="#B8A99A" font-size="12">Share of code by language, square-root scale</text>
+<rect x="468.0" y="16" width="436.0" height="300" rx="12" fill="#160A0D" stroke="#7C2D3A" stroke-width="1.5"/>
+<text x="490.0" y="52" fill="#C9A84C" font-size="18" font-weight="600">Top Languages</text>
+<clipPath id="bar"><rect x="490.0" y="70" width="392.0" height="10" rx="5"/></clipPath><g clip-path="url(#bar)">
+</g>
+<text x="490.0" y="298" fill="#B8A99A" font-size="12">updated 2026-11-23</text>
+<rect x="16" y="332" width="888" height="122" rx="12" fill="#160A0D" stroke="#7C2D3A" stroke-width="1.5"/>
+<text x="40.0" y="372" fill="#B8A99A" font-size="14">Repositories</text>
+<text x="40.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">1</text>
+<line x1="238.0" y1="354" x2="238.0" y2="432" stroke="#3A2328"/>
+<text x="262.0" y="372" fill="#B8A99A" font-size="14">Commits (last year)</text>
+<text x="262.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">3</text>
+<line x1="460.0" y1="354" x2="460.0" y2="432" stroke="#3A2328"/>
+<text x="484.0" y="372" fill="#B8A99A" font-size="14">Pull Requests</text>
+<text x="484.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">0</text>
+<line x1="682.0" y1="354" x2="682.0" y2="432" stroke="#3A2328"/>
+<text x="706.0" y="372" fill="#B8A99A" font-size="14">Stars Earned</text>
+<text x="706.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">0</text>
+</svg>
