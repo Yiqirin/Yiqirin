@@ -263,12 +263,15 @@ def radar(stats):
         out.append(f'<polygon points="{pts}" fill="none" stroke="{p["grid"]}" stroke-width="1"/>')
     for i in range(n):
         out.append(f'<line x1="{cx}" y1="{cy}" x2="{cx + R*math.cos(ang(i)):.1f}" y2="{cy + R*math.sin(ang(i)):.1f}" stroke="{p["grid"]}"/>')
+    if not langs:
+        out.append(f'<text x="{cx}" y="{cy}" fill="{p["muted"]}" font-size="14" text-anchor="middle">No language data yet</text>')
     mx = max((v["size"] for _, v in langs), default=1)
     vals = [math.sqrt(v["size"] / mx) for _, v in langs] + [0] * (n - len(langs))
     pts = [(cx + R*max(v, .06)*math.cos(ang(i)), cy + R*max(v, .06)*math.sin(ang(i))) for i, v in enumerate(vals)]
-    out.append(f'<polygon points="{" ".join(f"{a:.1f},{b:.1f}" for a, b in pts)}" fill="{p["key"]}" fill-opacity=".22" stroke="{p["key"]}" stroke-width="2"/>')
-    for a, b in pts:
-        out.append(f'<circle cx="{a:.1f}" cy="{b:.1f}" r="4" fill="{p["key"]}"/>')
+    if langs:
+        out.append(f'<polygon points="{" ".join(f"{a:.1f},{b:.1f}" for a, b in pts)}" fill="{p["key"]}" fill-opacity=".22" stroke="{p["key"]}" stroke-width="2"/>')
+        for a, b in pts:
+            out.append(f'<circle cx="{a:.1f}" cy="{b:.1f}" r="4" fill="{p["key"]}"/>')
     for i, (name, _) in enumerate(langs):
         lx, ly = cx + (R + 22) * math.cos(ang(i)), cy + (R + 22) * math.sin(ang(i))
         anchor = "middle" if abs(math.cos(ang(i))) < .3 else ("start" if math.cos(ang(i)) > 0 else "end")
