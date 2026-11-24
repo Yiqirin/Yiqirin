@@ -2,14 +2,14 @@
 <rect x="1" y="1" width="918" height="218" rx="14" fill="#160A0D" stroke="#7C2D3A" stroke-width="1.5"/>
 <line x1="306.7" y1="34" x2="306.7" y2="186" stroke="#7C2D3A"/>
 <line x1="613.3" y1="34" x2="613.3" y2="186" stroke="#7C2D3A"/>
-<text x="153.3" y="96" fill="#F0E6D2" font-size="40" font-weight="700" text-anchor="middle">360</text>
+<text x="153.3" y="96" fill="#F0E6D2" font-size="40" font-weight="700" text-anchor="middle">362</text>
 <text x="153.3" y="140" fill="#C9A84C" font-size="18" text-anchor="middle">Total Contributions</text>
 <text x="153.3" y="168" fill="#B8A99A" font-size="14" text-anchor="middle">Jun 21, 2023 - Present</text>
 <circle cx="460.0" cy="82" r="44" fill="none" stroke="#C9A84C" stroke-width="5"/>
 <path d="M460.0 26 c-9 10 -12 16 -5 23 c3 3 10 3 12 -3 c3 -7 -2 -12 -7 -20 z" fill="#C9A84C"/>
-<text x="460.0" y="96" fill="#F0E6D2" font-size="38" font-weight="700" text-anchor="middle">1</text>
+<text x="460.0" y="96" fill="#F0E6D2" font-size="38" font-weight="700" text-anchor="middle">2</text>
 <text x="460.0" y="160" fill="#C9A84C" font-size="18" font-weight="700" text-anchor="middle">Current Streak</text>
-<text x="460.0" y="188" fill="#B8A99A" font-size="14" text-anchor="middle">Nov 23</text>
+<text x="460.0" y="188" fill="#B8A99A" font-size="14" text-anchor="middle">Nov 23 - Nov 24</text>
 <text x="766.7" y="96" fill="#F0E6D2" font-size="40" font-weight="700" text-anchor="middle">6</text>
 <text x="766.7" y="140" fill="#C9A84C" font-size="18" text-anchor="middle">Longest Streak</text>
 <text x="766.7" y="168" fill="#B8A99A" font-size="14" text-anchor="middle">Jun 26 - Jul 1</text>
