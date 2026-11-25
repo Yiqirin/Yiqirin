@@ -10,9 +10,9 @@
 <line x1="234.0" y1="181" x2="284.5" y2="250.6" stroke="#3A2328"/>
 <line x1="234.0" y1="181" x2="183.5" y2="250.6" stroke="#3A2328"/>
 <line x1="234.0" y1="181" x2="152.2" y2="154.4" stroke="#3A2328"/>
-<polygon points="234.0,95.0 259.2,172.8 247.3,199.3 227.8,189.5 226.5,178.6" fill="#C9A84C" fill-opacity=".22" stroke="#C9A84C" stroke-width="2"/>
+<polygon points="234.0,95.0 259.4,172.7 247.3,199.3 227.8,189.5 226.5,178.6" fill="#C9A84C" fill-opacity=".22" stroke="#C9A84C" stroke-width="2"/>
 <circle cx="234.0" cy="95.0" r="4" fill="#C9A84C"/>
-<circle cx="259.2" cy="172.8" r="4" fill="#C9A84C"/>
+<circle cx="259.4" cy="172.7" r="4" fill="#C9A84C"/>
 <circle cx="247.3" cy="199.3" r="4" fill="#C9A84C"/>
 <circle cx="227.8" cy="189.5" r="4" fill="#C9A84C"/>
 <circle cx="226.5" cy="178.6" r="4" fill="#C9A84C"/>
@@ -25,9 +25,9 @@
 <rect x="468.0" y="16" width="436.0" height="300" rx="12" fill="#160A0D" stroke="#7C2D3A" stroke-width="1.5"/>
 <text x="490.0" y="52" fill="#C9A84C" font-size="18" font-weight="600">Top Languages</text>
 <clipPath id="bar"><rect x="490.0" y="70" width="392.0" height="10" rx="5"/></clipPath><g clip-path="url(#bar)">
-<rect x="490.0" y="70" width="330.8" height="10" fill="#3178c6"/>
-<rect x="820.3" y="70" width="31.7" height="10" fill="#e34c26"/>
-<rect x="851.5" y="70" width="23.3" height="10" fill="#f1e05a"/>
+<rect x="490.0" y="70" width="330.3" height="10" fill="#3178c6"/>
+<rect x="819.8" y="70" width="32.3" height="10" fill="#e34c26"/>
+<rect x="851.5" y="70" width="23.2" height="10" fill="#f1e05a"/>
 <rect x="874.3" y="70" width="5.5" height="10" fill="#F05138"/>
 <rect x="879.2" y="70" width="3.3" height="10" fill="#663399"/>
 </g>
@@ -35,17 +35,17 @@
 <text x="512.0" y="112" fill="#F0E6D2" font-size="15">TypeScript</text>
 <text x="882.0" y="112" fill="#C9A84C" font-size="15" text-anchor="end">84%</text>
 <rect x="490.0" y="121" width="392.0" height="5" rx="2.5" fill="#3A2328"/>
-<rect x="490.0" y="121" width="330.3" height="5" rx="2.5" fill="#3178c6"/>
+<rect x="490.0" y="121" width="329.8" height="5" rx="2.5" fill="#3178c6"/>
 <circle cx="497.0" cy="147" r="6" fill="#e34c26"/>
 <text x="512.0" y="152" fill="#F0E6D2" font-size="15">HTML</text>
-<text x="882.0" y="152" fill="#C9A84C" font-size="15" text-anchor="end">8.0%</text>
+<text x="882.0" y="152" fill="#C9A84C" font-size="15" text-anchor="end">8.1%</text>
 <rect x="490.0" y="161" width="392.0" height="5" rx="2.5" fill="#3A2328"/>
-<rect x="490.0" y="161" width="31.2" height="5" rx="2.5" fill="#e34c26"/>
+<rect x="490.0" y="161" width="31.8" height="5" rx="2.5" fill="#e34c26"/>
 <circle cx="497.0" cy="187" r="6" fill="#f1e05a"/>
 <text x="512.0" y="192" fill="#F0E6D2" font-size="15">JavaScript</text>
 <text x="882.0" y="192" fill="#C9A84C" font-size="15" text-anchor="end">5.8%</text>
 <rect x="490.0" y="201" width="392.0" height="5" rx="2.5" fill="#3A2328"/>
-<rect x="490.0" y="201" width="22.8" height="5" rx="2.5" fill="#f1e05a"/>
+<rect x="490.0" y="201" width="22.7" height="5" rx="2.5" fill="#f1e05a"/>
 <circle cx="497.0" cy="227" r="6" fill="#F05138"/>
 <text x="512.0" y="232" fill="#F0E6D2" font-size="15">Swift</text>
 <text x="882.0" y="232" fill="#C9A84C" font-size="15" text-anchor="end">1.3%</text>
@@ -56,13 +56,13 @@
 <text x="882.0" y="272" fill="#C9A84C" font-size="15" text-anchor="end">0.7%</text>
 <rect x="490.0" y="281" width="392.0" height="5" rx="2.5" fill="#3A2328"/>
 <rect x="490.0" y="281" width="5.0" height="5" rx="2.5" fill="#663399"/>
-<text x="490.0" y="298" fill="#B8A99A" font-size="12">updated 2026-11-24</text>
+<text x="490.0" y="298" fill="#B8A99A" font-size="12">updated 2026-11-25</text>
 <rect x="16" y="332" width="888" height="122" rx="12" fill="#160A0D" stroke="#7C2D3A" stroke-width="1.5"/>
 <text x="40.0" y="372" fill="#B8A99A" font-size="14">Repositories</text>
 <text x="40.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">7</text>
 <line x1="238.0" y1="354" x2="238.0" y2="432" stroke="#3A2328"/>
 <text x="262.0" y="372" fill="#B8A99A" font-size="14">Commits (last year)</text>
-<text x="262.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">351</text>
+<text x="262.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">355</text>
 <line x1="460.0" y1="354" x2="460.0" y2="432" stroke="#3A2328"/>
 <text x="484.0" y="372" fill="#B8A99A" font-size="14">Pull Requests</text>
 <text x="484.0" y="416" fill="#C9A84C" font-size="36" font-weight="600">0</text>
